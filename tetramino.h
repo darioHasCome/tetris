@@ -16,11 +16,12 @@ public:
     int getY();
     int getX();
     void getShape(char dest[ROWS][COLUMNS]);
+    bool collide(WINDOW* win);
     //metodi per il movimento
-    void mvright();
-    void mvleft();
-    void mvdown();
-    void mvup();
+    void mvright(WINDOW* win);
+    void mvleft(WINDOW* win);
+    bool mvdown(WINDOW* win);
+    void mvup(WINDOW* win);
     //metodi per cancellare e scrivere un tetramino
     void clearTetramino(WINDOW* win);
     void printTetramino(WINDOW* win);
@@ -29,8 +30,8 @@ public:
     static Tetramino tetraSpawn(int y, int x);
 
     // Metodi per ruotare il Tetramino
-    void ruotasx();
-    void ruotadx();
+    void ruotasx(WINDOW* win);
+    void ruotadx(WINDOW* win);
 };
 
 #endif // TETRAMINO_H
