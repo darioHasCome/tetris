@@ -1,4 +1,5 @@
 #include <ncurses.h>
+#include "gameloop.h"
 
 
 
@@ -73,7 +74,7 @@ int main() {
 
     // Gestione delle opzioni
     if(choice == 1) {
-        // Aggiungi qui il codice per iniziare un nuovo gioco
+        gameloop();
     } else if(choice == 2) {
       
         // Aggiungi qui il codice per visualizzare la classifica
