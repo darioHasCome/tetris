@@ -62,10 +62,6 @@ gameloop::gameloop() {
     box(win, 000, 000);
     move (0,20);
     printw("SCORE:");
-    move (1,20);
-    printw("LEVEL:");
-    move (2,20);
-    printw("FULL LINES:");
     refresh();
     wrefresh(win);
     int time = 0;
