@@ -99,10 +99,6 @@ gameloop::gameloop() {
                 case 'e': // Ruota a destra con 'e'
                     tetramino.ruotadx(win);
                     break;
-                case 'r': // Reset tetramino
-                    tetramino = Tetramino::tetraSpawn(5, 5);
-                    tetraminoFissato = false;
-                    break;
             }
 
         mvprintw(3, 20, "Tempo: %i", time/100);
