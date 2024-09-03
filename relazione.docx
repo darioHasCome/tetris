@@ -157,15 +157,16 @@ funzione che provoca il game over nel caso in cui un tetramino collida con un al
   rotazione opposta in caso di collisione
 
 -void finepartita(int score) 
-la funzione prende in input il punteggio della partite,  pulisce lo schermo e richiede al giocatore di segnare il proprio nome. Passa poi l'input "nome giocatore" alla funzione salvanome.
+ la funzione prende in input il punteggio della partite, pulisce lo schermo e richiede al giocatore di segnare il proprio nome. 
+ Passa poi l'input "nome giocatore" alla funzione salvanome.
 
 -void salvanome(int score, char nome[]) scrive il punteggio e il nome sul file punteggio.txt.
 
 -void classifica()
-la funzione stampa a schermo i contenuti del file punteggio.txt dopo essere stato ordinato da ordinaClassifica().
+ la funzione stampa a schermo i contenuti del file punteggio.txt dopo essere stato ordinato da ordinaClassifica().
 
 -void ordinaClassifica()
-la funzione utilizza bubblesort per ordinare i nomi e irelativi punteggi in ordine decrescente nel file punteggio.txt.
+ la funzione utilizza bubblesort per ordinare i nomi e irelativi punteggi in ordine decrescente nel file punteggio.txt.
 
 
 
