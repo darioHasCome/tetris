@@ -51,10 +51,6 @@ gameloop::gameloop() {
     box(win, 0, 0);
     move(0, 20);
     printw("SCORE: %d", score);
-    move(1, 20);
-    printw("LEVEL:");
-    move(2, 20);
-    printw("FULL LINES:");
     refresh();
     wrefresh(win);
     int time = 0;
@@ -88,10 +84,6 @@ gameloop::gameloop() {
                     break;
                 case 'e':
                     tetramino.ruotadx(win);
-                    break;
-                case 'r':
-                    tetramino = Tetramino::tetraSpawn(5, 5);
-                    tetraminoFissato = false;
                     break;
             }
             // Visualizza il tempo

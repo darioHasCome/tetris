@@ -10,6 +10,7 @@ void salvanome(char nome[], int score) {
     // Forza la scrittura nel file e chiude il file
     outputFile.flush(); // Assicurati che il buffer sia svuotato
     outputFile.close(); // Chiudi il file
+    
 }
 
 void finepartita(int score){
