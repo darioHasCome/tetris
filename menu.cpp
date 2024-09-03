@@ -1,7 +1,4 @@
-#include <ncurses.h>
-#include "menu.h"
-#include "classifica.h"
-#include "gameloop.h"
+#include"menu.h"
 
 void stampa_titolo() {
     mvprintw(7, 52, "TETRIS");
