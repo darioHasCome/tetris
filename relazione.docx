@@ -68,7 +68,36 @@ Implementazione:
 
 
 -gameloop.cpp:
+Questo file regola il funzionamento del vero e proprio schermo di partita, disegnando board (complementata dalle indicazioni di punteggio e tempo trascorso)
+e controllando generazione, distruzione e movimento (automatico o non) dei tetramini.
+In particolare:
 
+-bool gameloop::checkline(WINDOW* win, int index_riga)
+funzione che controlla quando una riga è stata completata, assicurandosi tramite un loop che non siano presenti spazi nella sua lunghezza.
+
+-void gameloop::deleteline(WINDOW* win, int index_riga)
+funzione complementare a quella di cui sopra che cancella un intera riga di tetramini dalla schermata di gioco, aumenta il punteggio di 100 
+e infine abbassa di uno tutti i pixel dalla linea cancellata
+
+In seguito la classe sfrutta le funzioni grafiche base di ncurses (box in particolare) per disegnare la board di gioco, poi genera e stampa i tetramini 
+tramite le funzioni dichiarate in tetramino.cpp TetraSpawn e printTetramino.
+
+- if (!tetraminoFissato) {
+            switch (ch) { ... etc.
+funzione che regola, attraverso switch, il movimento volontario del tetramino, consentendo di muoverlo attraverso le frecce.
+
+-  mvprintw(3, 20, "Tempo: %i", time / 100) ... etc.
+funzione che gestisce il contatore di tempo del gioco, mostrandolo sullo schermo affianco alla scritta tempo e sfruttandolo per muovere automaticament i tetramini 
+in basso ogni secondo
+
+- if (tetraminoFissato) {
+            tetramino = Tetramino::tetraSpawn(1, 5);
+funzione che genera automaticamente un tetramino ogni volta che uno si fissa e che cancella le righe quando esse vengono completate collegando le prime due funzioni
+tramite una conseguenza if-then;
+
+-if (tetramino.collide(win)) {
+                napms(1000);.. etc.
+funzione che provoca il game over nel caso in cui un tetramino collida con un altro non appena esso viene generato;
 
 
 
