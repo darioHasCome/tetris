@@ -18,14 +18,6 @@ int Tetramino::getX() {
     return startingx;
 }
 
-void Tetramino::getShape(char dest[ROWS][COLUMNS]) {
-    for(int i=0; i<ROWS; i++){
-        for(int j=0; j<COLUMNS; j++){
-            dest[i][j] = Position[i][j];
-        }
-    }
-}
-
 bool Tetramino::collide(WINDOW* win) {
     for (int y=0; y<ROWS; y++) {
         for (int x=0; x<COLUMNS; x++) {

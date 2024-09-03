@@ -1,0 +1,117 @@
+Relazione del progetto Tetris in ncurses A.A. 2023/2024
+Partecipanti: Pietro Cordaro, Dario Farneti, Giulio Testoni, Dario Venuto
+
+
+Descrizione generale:
+
+all'avvio del programma viene inizializzato ncurses e aperto il menu` con 
+il titolo del gioco (TETRIS) e le tre opzioni 'nuova partita', 'classifica'
+e 'uscita'; il menu` puo` essere navigato dall'utente con le frecce direzionali
+e le opzioni possono essere selezionate con il tasto invio.
+
+-Selezionando l'opzione 'nuova partita' si avvia una partita di tetris con una
+ griglia ampia 10 quadratini (20 caratteri dato che ogni quadratino e` formato da 
+ due caratteri []) e alta 20. A destra della griglia viene visualizzato il punteggio attuale.
+ Durante la partita, i tetramini spawnano in alto al centro 
+ della griglia e si muovono verso il basso da soli a tempo.
+
+ Se non entrano in collisione con altri possono essere mossi dall'utente verso
+ destra, sinistra o verso il basso con le frecce direzionali, o ruotati di 90 gradi 
+ verso sinistra o destra rispettivamente con i tasti 'w' e 'e'.
+
+ Se un tetramino non riesce a completare un movimento verso il basso a causa di
+ una collisione, viene stampato sulla griglia di gioco e ne viene spawnato un altro
+ nella posizione di partenza. 
+
+ Se una riga della griglia e` completa, viene cancellata e il punteggio viene aumentato.
+ Completare piu` righe contemporaneamente corrisponde a un maggiore aumento del punteggio.
+
+ La partita finisce quando un tetramino non puo` spawnare 
+ nella posizione iniziale a causa di una collisione. 
+ Una volta terminata la partita, il programma chiedera` all'utente di mettere in input un nome
+ che sara` scritto nel file classifica.txt insieme al punteggio raggiunto, dopodiche` tornera` 
+ al menu` principale.
+
+-Selezionando l'opzione classifica sara` possibile visualizzare la classifica delle partite 
+ precedenti, letta dal file classifica.txt, in ordine decrescente di punteggio.
+
+-Per terminare il programma selezionare l'opzione uscita.
+
+
+Implementazione:
+
+-mainmenu.cpp:
+
+
+
+
+-gameloop.cpp:
+
+
+
+
+-shapes.cpp:
+ questo file inizializza le matrici dei tetramini e ne contiene le forme effettive (array bidimensionali)
+ serve a creare una lista di forme di tetramini e sceglierne una a caso ogni volta che bisogna spawnarne uno
+ 
+ -pNode addShape(pNode head, char s[ROWS][COLUMNs]):
+  questa funzione serve ad aggiungere un nodo contenente una forma a una lista
+
+ -pNode initSList():
+  questa funzione inizializza l'intera lista di forme
+ -pNode chooseShape():
+  questa funzione sceglie una forma casuale tra quelle inizializzate con initSList(). E` una pseudorandomizzazione, 
+  ma viene complementata da una chiamata a srand(time(0)) all'inizio del gameloop perche` non si ripeta ogni volta la 
+  stessa partita'
+
+
+
+-tetramino.cpp:
+ classe tetramino formata dall'array bidimensionale Position[ROWS][COLUMNS] e da delle coordinate di partenza
+ startingy e startingx che indicano la posizione corrente su una finestra del punto Position[0][0]
+
+ -int getY()
+ -int getX()
+  funzioni per usare i parametri di tetramino.cpp fuori dalla classe se necessario
+
+ -bool collide(WINDOW* win)
+  confronta la posizione di ogni elemento del tetramino con l'elemento della finestra
+  presa in input che si trova alle stesse coordinate, ritorna vero se due elementi nello
+  stesso punto sono "pieni", (diverso da '/0' per il tetramino e diverso da ' ' per la window)
+
+ -void mvright(WINDOW* win)
+ -void mvleft(WINDOW* win)
+ -void mvup(WINDOW* win)
+ -bool mvdown(WINDOW* win)
+  le quattro funzioni di movimento che operano modificando startingy e startingx;
+  prendono in input una finestra perche` devono chiamare collide nella posizione modificata,
+  e nel caso in cui si effettui una collisione effettuano il movimento opposto, che riporta la posizione all'originale
+  mvdown e` booleana perche`, a differenza delle altre, e` importante verificare se l'esecuzione del movimento verso il 
+  basso e` riuscita per sapere se il tetramino va fissato o no
+ 
+ -tetraSpawn(int y, int x)
+  crea un tetramino con coordinate iniziali date, usando la funzione chooseShape() di shape.cpp per sceglierne la forma
+
+ -void clearTetramino(WINDOW* win)
+  cancella il tetramino da una finestra, scrivendo ' ' alle coordinate in cui e`
+
+ -void printTetramino(WINDOW* win)
+  scrive il tetramino sulla finestra win nelle coordinate in cui si trova
+
+ -void ruotaSx(WINDOW* win)
+ -void ruotaDx(WINDOW* win)
+  le due funzioni di rotazione ruotano il tetramino di 90 gradi nelle rispettive direzioni, scrivendo prima la matrice
+  ruotata su una variabile rotated[ROWS][COLUMNS] e poi copia rotated sul campo Position del tetramino.
+  come le funzioni di movimento, le funzioni di rotazione chiamano collide(win) a rotazione eseguita eseguendo la
+  rotazione opposta in caso di collisione
+
+
+
+
+
+
+
+
+
+
+
