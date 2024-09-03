@@ -1,6 +1,7 @@
+#include <cstdlib>
 #ifndef SHAPESLIST_H
 #define SHAPESLIST_H
-#include <cstdlib>
+
 const int ROWS = 4;
 const int COLUMNS = 8;
 

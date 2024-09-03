@@ -40,9 +40,31 @@ e le opzioni possono essere selezionate con il tasto invio.
 
 Implementazione:
 
--mainmenu.cpp:
+-main.cpp:
+ file principale, inizializza ncurses e poi un ciclo while che termina quando termina il programma;
+ dal ciclo while fa partire il gioco o la classifica, a seconda della scelta fatta dall'utente nel menu
 
 
+
+-menu.cpp:
+ file dedicato alla generazione del menu principale del gioco
+
+ -void stampa_titolo()
+  stampa il titolo del menu;
+
+ -WINDOW* crea_finestra_menu(int height, int width, int starty, int startx)
+  crea una window per il menu con le caratteristiche date e abilita la lettura dei tasti 
+
+ -void stampa_menu(WINDOW *menuwin, int highlight, const char *choices[], int n_choices)
+  stampa il menu, aggiornandolo in base anche all'input dell'utente
+
+ -int gestisci_input_menu(WINDOW *menuwin, int *highlight, int n_choices) 
+  cambia la parte del menu evidenziata e seleziona la scelta in base all'input dell'utente
+
+ -int mostra_menu() 
+  scrive il corpo del menu; il ciclo while continua a stampare il menu finche` non viene 
+  effettuata una scelta
+  
 
 
 -gameloop.cpp:
@@ -54,12 +76,12 @@ Implementazione:
  questo file inizializza le matrici dei tetramini e ne contiene le forme effettive (array bidimensionali)
  serve a creare una lista di forme di tetramini e sceglierne una a caso ogni volta che bisogna spawnarne uno
  
- -pNode addShape(pNode head, char s[ROWS][COLUMNS])
+ -pNode addShape(pNode head, char s[ROWS][COLUMNs]):
   questa funzione serve ad aggiungere un nodo contenente una forma a una lista
 
- -pNode initSList()
+ -pNode initSList():
   questa funzione inizializza l'intera lista di forme
- -pNode chooseShape()
+ -pNode chooseShape():
   questa funzione sceglie una forma casuale tra quelle inizializzate con initSList(). E` una pseudorandomizzazione, 
   ma viene complementata da una chiamata a srand(time(0)) all'inizio del gameloop perche` non si ripeta ogni volta la 
   stessa partita'

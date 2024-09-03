@@ -52,6 +52,8 @@ gameloop::gameloop() {
     move(0, 20);
     printw("SCORE: %d", score);
     move(1, 20);
+    printw("LEVEL:");
+    move(2, 20);
     printw("FULL LINES:");
     refresh();
     wrefresh(win);

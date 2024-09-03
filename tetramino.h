@@ -1,7 +1,8 @@
-#ifndef TETRAMINO_H
-#define TETRAMINO_H
 #include "shapes.h"
 #include<ncurses.h>
+#ifndef TETRAMINO_H
+#define TETRAMINO_H
+
 
 class Tetramino {
 protected:

@@ -11,20 +11,19 @@ int main() {
     curs_set(0);// Nasconde il cursore
 
     int choice;
+    bool flag = true;
 
-    // Ciclo principale che mostra il menu finché l'utente non sceglie di uscire
-    while (true) {
+    // Ciclo principale che mostra il menu finche` l'utente non sceglie di uscire
+    while (flag) {
         choice = mostra_menu(); // Richiama la funzione del menu e ottiene la scelta
-
         // Gestione delle opzioni
         if (choice == 1) {
             gameloop();  // Avvia il gioco
         } else if (choice == 2) {
             classifica();  // Visualizza la classifica
         } else if (choice == 3) {
-            break;  // Esce dal ciclo e termina il programma
+            flag = false;  // Esce dal ciclo e termina il programma
         }
-
         clear();  // Pulisce lo schermo prima di tornare al menu
     }
 
