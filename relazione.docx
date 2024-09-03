@@ -54,12 +54,12 @@ Implementazione:
  questo file inizializza le matrici dei tetramini e ne contiene le forme effettive (array bidimensionali)
  serve a creare una lista di forme di tetramini e sceglierne una a caso ogni volta che bisogna spawnarne uno
  
- -pNode addShape(pNode head, char s[ROWS][COLUMNs]):
+ -pNode addShape(pNode head, char s[ROWS][COLUMNS])
   questa funzione serve ad aggiungere un nodo contenente una forma a una lista
 
- -pNode initSList():
+ -pNode initSList()
   questa funzione inizializza l'intera lista di forme
- -pNode chooseShape():
+ -pNode chooseShape()
   questa funzione sceglie una forma casuale tra quelle inizializzate con initSList(). E` una pseudorandomizzazione, 
   ma viene complementata da una chiamata a srand(time(0)) all'inizio del gameloop perche` non si ripeta ogni volta la 
   stessa partita'
